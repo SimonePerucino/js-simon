@@ -6,9 +6,12 @@
 quali dei numeri da indovinare sono stati individuati.*/
 
 var casualNumbers = []
+var userNumbers = []
 
 
-for(var i = 0; i < 5;i++) {
+var elem = document.getElementById('timer');
+
+for (var i = 0; i < 5; i++) {
     CasualNumGen();
     var casualNum = CasualNumGen();
     console.log(casualNum)
@@ -17,15 +20,31 @@ for(var i = 0; i < 5;i++) {
 
 alert(casualNumbers)
 
+var timerId = setInterval(countdown, 1000);
+
+
+for (let i = 0; i < 5; i++) {
+    var userNum = parseInt(prompt("inserisci uno alla volta i numeri che hai visto prima"))
+    userNumbers.push(userNum)
+}
+console.log(userNumbers)
 
 
 
-function CasualNumGen(){
+
+var timeLeft = 30;
+
+function countdown() {
+    if (timeLeft == -1) {
+        clearTimeout(timerId);
+        doSomething();
+    } else {
+        elem.innerHTML = timeLeft + ' seconds remaining';
+        timeLeft--;
+    }
+}
+
+function CasualNumGen() {
     var CasualN = Math.floor(Math.random() * 20)
     return CasualN
 }
-
-
-
-
-
